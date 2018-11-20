@@ -1,0 +1,22 @@
+{
+  "name": "bot-proj",
+  "version": "1.0.0",
+  "description": "Personal discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/00BBS/bot-proj.git"
+  },
+  "author": "00BBS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/00BBS/bot-proj/issues"
+  },
+  "homepage": "https://github.com/00BBS/bot-proj#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
