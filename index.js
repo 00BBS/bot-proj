@@ -1,8 +1,26 @@
 const config = require("./botconfig.json");
 const disc = require("discord.js");
-
-
+const fs = require("fs");
 const bot = new disc.Client({disableEveryone: true});
+
+bot.commands = new disc.Collection();
+
+fs.readdir("./commands/", (err, file) => {
+	if(err){
+		console.log(err);
+	}
+	let jsfile = file.filter(f => f.split(".").pop() === "js");
+	if(jsfile.length <= 0){
+		console.log("Cant find commands.");
+		return;
+	}
+	jsfile.forEach((f, i) => {
+		let props = require(`./commands/${f}`);
+		console.log(`${f} has been loaded`);
+		bot.commands.set(props.help.name, props);
+	});
+})
+
 
 
 bot.on("ready", async()=>{
@@ -28,47 +46,9 @@ bot.on("message", async msg => {
 	let args = msgArr.slice(1);
 
 
-	// bot functions
-	if(cmd === `${prefix}gamers`){
-		return msg.channel.send("Gamers rise up");
-	}
-	// ping pong
-	else if(cmd === `${prefix}ping`){
-		return msg.channel.send("Pong!");
-	}
-	else if(cmd === `${prefix}serverInfo`){
-		let icon = msg.guild.iconURL;
-		// let array = Array.from(msg.member.guild.members);
-		let embed = new disc.RichEmbed()
-		.setDescription("Server Information")
-		.setColor("#35ffda")
-		.setThumbnail(icon)
-		.addField("Server Name", msg.guild.name)
-		.addField("Created On", msg.guild.createdAt)
-		.addField("You joined", msg.member.joinedAt)
-		.addField("Total members", msg.guild.memberCount)
-		.addField("Least favourite member", msg.guild.members.random().user.username);
-
-		console.log(msg.guild.members.random().user.username)
-		return msg.channel.send(embed);
-	}
-	// contain bot info
-	else if(cmd === `${prefix}info`){
-		let icon = bot.user.displayAvatarURL;
-		let embed = new disc.RichEmbed()
-		.setDescription("Bot Information")
-		.setColor("#35ffda")
-		.setThumbnail(icon)
-		.addField("Bot Name", bot.user.username)
-		.addField("Created On", bot.user.createdAt)
-		.addField("Commands", "^gamers, ^ping, ^serverInfo, ^info")
-		.addField("Special Strings", "le, kuretsuha, messatsu. shut, idk");
-
-		return msg.channel.send(embed);
-	}
-	// error
-	else if(cmd === `${prefix}`){
-		return msg.channel.send("Command not found. Try: ^info for a list of commands.");
+	let commandFile = bot.commands.get(cmd.slice(prefix.length));
+	if(commandFile){
+		commandFile.run(bot, msg, args);
 	}
 
 	/**** Bonus Random Features ****/
