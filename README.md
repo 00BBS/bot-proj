@@ -9,4 +9,4 @@ Functionalities:
 - Miscellaneous
 
 Invitation Link:
-https://discordapp.com/oauth2/authorize?client_id=514301166012596254&scope=bot
+<removed>
