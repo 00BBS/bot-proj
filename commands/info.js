@@ -8,6 +8,7 @@ module.exports.run = async (bot, msg, args) => {
 	.setThumbnail(icon)
 	.addField("Bot Name", bot.user.username)
 	.addField("Created On", bot.user.createdAt)
+	.addField("Git", "https://github.com/00BBS/bot-proj")
 	.addField("Commands", "^serverInfo, ^info")
 	.addField("Special Strings", "le");
 
