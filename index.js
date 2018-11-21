@@ -1,6 +1,8 @@
 const config = require("./botconfig.json");
 const disc = require("discord.js");
 const fs = require("fs");
+let coins = require("./coins.json");
+
 const bot = new disc.Client({disableEveryone: true});
 
 bot.commands = new disc.Collection();
@@ -33,6 +35,38 @@ bot.on("message", async msg => {
 	if(msg.channel.type === "dm"){
 		console.log("dm: " + msg)
 		return;
+	}
+
+
+	if(!coins[msg.author.id]){
+		coins[msg.author.id] = {
+			coins: 0
+		};
+	}
+
+	// randomise coin amounts
+	let coinAmount = Math.floor(Math.random() * 15) + 1;
+	let baseAmount = Math.floor(Math.random() * 15) + 1;
+	console.log(`${coinAmount} ; ${baseAmount}`);
+
+	// if they happen to match, give the coins to the message author
+	if(coinAmount === baseAmount){
+		coins[msg.author.id] = {
+			coins: coins[msg.author.id].coins + coinAmount
+		};
+		fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
+			if(err){
+				console.log(err)
+			}
+		});
+
+		let embed = new disc.RichEmbed()
+		.setAuthor(msg.author.username)
+		.setColor("#35ffda")
+		.addField("💸", `${coinAmount} coins added !`);
+
+		msg.channel.send(embed).then(message => {message.delete(10000)});
+
 	}
 
 	let prefix = config.prefix;
