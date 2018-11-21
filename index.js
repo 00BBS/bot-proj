@@ -55,30 +55,6 @@ bot.on("message", async msg => {
 	if(msg.content.includes("le") === true){
 		return msg.channel.send("le " + msg.member + " has arrived")
 	}
-	if(msg.content.includes("kuretsuha") === true){
-		let embed = new disc.RichEmbed()
-		.setImage("https://i.imgur.com/3eSo2Hx.gif")
-		.setColor("#35ffda")
-		.addField("Le Akuma has arrived", "https://i.imgur.com/3eSo2Hx.gif");
-		return msg.channel.send(embed);
-	}
-	if(msg.content.includes("messatsu") === true){
-		let embed = new disc.RichEmbed()
-		.setImage("https://j.gifs.com/Yvjk60.gif")
-		.setColor("#35ffda")
-		.addField("Le Akuma has arrived", "https://j.gifs.com/Yvjk60.gif");
-		return msg.channel.send(embed);
-	}
-	if(msg.content.includes("shut") === true){
-		return msg.channel.send("your mouth");
-	}
-	if(msg.content.includes("idk") === true){
-		let embed = new disc.RichEmbed()
-		.setImage("https://thumbs.gfycat.com/UnfinishedDefenselessAustralianfreshwatercrocodile-size_restricted.gif")
-		.setColor("#35ffda")
-		.addField("Dunno about that one chief", "https://thumbs.gfycat.com/UnfinishedDefenselessAustralianfreshwatercrocodile-size_restricted.gif");
-		return msg.channel.send(embed);
-	}
 	/**** Bonus Random Features ****/
 
 });
