@@ -21,11 +21,9 @@ fs.readdir("./commands/", (err, file) => {
 	});
 })
 
-
-
 bot.on("ready", async()=>{
 	console.log(`${bot.user.username} is here.`);
-	bot.user.setActivity("Stir fry simulator");
+	bot.user.setActivity("Stir Fry Simulator 2020");
 });
 
 bot.on("message", async msg => {
