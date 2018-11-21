@@ -8,8 +8,8 @@ module.exports.run = async (bot, msg, args) => {
 	.setThumbnail(icon)
 	.addField("Bot Name", bot.user.username)
 	.addField("Created On", bot.user.createdAt)
-	.addField("Commands", "^gamers, ^ping, ^serverInfo, ^info")
-	.addField("Special Strings", "le, kuretsuha, messatsu. shut, idk");
+	.addField("Commands", "^serverInfo, ^info")
+	.addField("Special Strings", "le");
 
 	return msg.channel.send(embed);
 }
