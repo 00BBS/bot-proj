@@ -37,11 +37,14 @@ module.exports.run = async (bot, msg, args) => {
 		coins: pCoins + parseInt(args[1])
 	};
 
-
+	let icon = msg.author.displayAvatarURL;
 	embed = new disc.RichEmbed()
 	.setAuthor(msg.author.username)
 	.setColor("#35ffda")
-	.addField("Coins given 💸", args[1]);
+	.setThumbnail(icon)
+	.addField("Coins given 💸", args[1])
+	.addField("Given to", args[0])
+	.addField("You hold", coins[msg.author.id].coins);
 
 	fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
 		if(err){
