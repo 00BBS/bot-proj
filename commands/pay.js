@@ -3,7 +3,7 @@ const fs = require("fs");
 let coins = require("../coins.json");
 
 module.exports.run = async (bot, msg, args) => {
-	// basic error checking
+	// error checking
 	if(!coins[msg.author.id]){
 		return msg.reply("You dont have any coins.");
 	}
@@ -28,15 +28,15 @@ module.exports.run = async (bot, msg, args) => {
 
 	if(args[1] > sCoins){
 		return msg.reply("You do not have enough coins to give.")
-	}else{
-		coins[msg.author.id].coins = {
-			coins: sCoins - parseInt(args[1])
-		};
-
-		coins[userP.id].coins = {
-			coins: pCoins + parseInt(args[1])
-		}
 	}
+	coins[msg.author.id] = {
+		coins: sCoins - parseInt(args[1])
+	};
+
+	coins[userP.id] = {
+		coins: pCoins + parseInt(args[1])
+	};
+
 
 	embed = new disc.RichEmbed()
 	.setAuthor(msg.author.username)
