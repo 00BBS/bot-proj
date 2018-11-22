@@ -43,8 +43,8 @@ module.exports.run = async (bot, msg, args) => {
 	.setColor("#35ffda")
 	.setThumbnail(icon)
 	.addField("Coins given 💸", args[1])
-	.addField("Given to", args[0])
-	.addField("You hold", coins[msg.author.id].coins);
+	.addField("Given to 👥", args[0])
+	.addField("You hold 👤", coins[msg.author.id].coins);
 
 	fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
 		if(err){
