@@ -37,14 +37,14 @@ module.exports.run = async (bot, msg, args) => {
 		coins[msg.author.id] = {
 			coins: currCoins + parseInt(args[1])
 		}
-		msg.channel.send(`${msg.author} has won ${args[1]} coins. You now have ${coins[msg.author.id].coins} coins`);
+		msg.channel.send(`${msg.author} has won ${args[1]} coins. You now have ${coins[msg.author.id].coins} coins <:thebest:480222232346624000>`);
 	}
 	else{
 		console.log("loss");
 		coins[msg.author.id] = {
 			coins : currCoins - parseInt(args[1])
 		}
-		msg.channel.send(`${msg.author} has lost ${args[1]} coins. You now have ${coins[msg.author.id].coins} coins`);
+		msg.channel.send(`${msg.author} has lost ${args[1]} coins. You now have ${coins[msg.author.id].coins} coins <:whyRoodn:514537008828514324>`);
 	}
 
 	fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
