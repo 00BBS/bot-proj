@@ -7,14 +7,12 @@ module.exports.run = async (bot, msg, args) => {
 	if(!coins[msg.author.id]){
 		return msg.reply("You dont have any coins.");
 	}
-	if(args.length < 2){
-		return msg.reply("You have not specified an amount.");
-	}
 	if(args[0].includes(msg.author.id) === true){
 		return msg.reply("You cannot give yourself coins.");
 	}
-
-
+	if(args.length > 2 || args.length < 2){
+		return msg.reply("The correct way of using the command: ^pay @someone <amount>. Make sure you are not including a space, after the @.");
+	}
 	let userP = msg.guild.member(msg.mentions.users.first()) || msg.guild.members.get(args[0]);
 	// check if the payed user has coins or not
 	if(!coins[userP.id]){

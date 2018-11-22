@@ -9,7 +9,7 @@ module.exports.run = async (bot, msg, args) => {
 	.addField("Bot Name", bot.user.username)
 	.addField("Created On", bot.user.createdAt)
 	.addField("Git", "https://github.com/00BBS/bot-proj")
-	.addField("Commands", "^serverInfo, ^info")
+	.addField("Commands", "^coins, ^coinflip, ^pay, ^serverInfo, ^info")
 	.addField("Special Strings", "le");
 
 	return msg.channel.send(embed);
