@@ -8,14 +8,13 @@ module.exports.run = async (bot, msg, args) => {
 		};
 	}
 
-
 	let uCoins = coins[msg.author.id].coins;
 	let embed = new disc.RichEmbed()
 	.setAuthor(msg.author.username)
 	.setColor("#35ffda")
 	.addField("💰", "You have: " + uCoins + " coins!");
 
-	return msg.channel.send(embed).then(message => {message.delete(5000)});
+	return msg.channel.send(embed);
 }
 
 module.exports.help = {
