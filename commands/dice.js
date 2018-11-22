@@ -18,11 +18,11 @@ module.exports.run = async (bot, msg, args) => {
 		else{
 			var diceBet = args[0] - 1;
 			var diceBet2 = args[1] - 1;
-			if((diceBet) === dice1 && (diceBet2) === dice2){
+			if(((diceBet) === dice1 && (diceBet2) === dice2) || (diceBet) === dice2 && diceBet2 === dice1){
 				coins[msg.author.id] = {
 					coins : currCoin + 36*parseInt(args[2])
 				}
-				msg.reply(`You have won! Congratulations! Your account has been credited with ` + 36*args[2] + " coins");
+				msg.reply(`You have won! Congratulations! Your account has been credited with ` + 36*args[2] + " coins <:roodn:514537473532231692>");
 			}
 			else{
 				coins[msg.author.id] = {
@@ -47,7 +47,7 @@ module.exports.run = async (bot, msg, args) => {
 				coins[msg.author.id] = {
 					coins : currCoin + 6*parseInt(args[1])
 				}
-				msg.reply(`You have won! Congratulations! Your account has been credited with ` + 6*args[1] + " coins");
+				msg.reply(`You have won! Congratulations! Your account has been credited with ` + 6*args[1] + " coins <:roodn:514537473532231692>");
 			}
 			else{
 				coins[msg.author.id] = {

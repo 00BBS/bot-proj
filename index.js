@@ -52,7 +52,7 @@ bot.on("message", async msg => {
 	// if they happen to match, give the coins to the message author
 	if(coinAmount === baseAmount){
 		coins[msg.author.id] = {
-			coins: coins[msg.author.id].coins + coinAmount
+			coins: coins[msg.author.id].coins + (coinAmount*50)
 		};
 		fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
 			if(err){
@@ -63,7 +63,7 @@ bot.on("message", async msg => {
 		let embed = new disc.RichEmbed()
 		.setAuthor(msg.author.username)
 		.setColor("#35ffda")
-		.addField("💸", `${coinAmount} coins added !`);
+		.addField("💸", `${coinAmount * 50} coins added !`);
 
 		msg.channel.send(embed).then(message => {message.delete(10000)});
 
