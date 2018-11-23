@@ -14,7 +14,7 @@ module.exports.run = async (bot, msg, args) => {
 	.setColor("#35ffda")
 	.addField("💰", "You have: " + uCoins + " coins!");
 
-	return msg.channel.send(embed);
+	msg.channel.send(embed).then(message => {message.delete(5000)});
 }
 
 module.exports.help = {

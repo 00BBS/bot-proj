@@ -37,7 +37,7 @@ module.exports.run = async (bot, msg, args) => {
 		coins[msg.author.id] = {
 			coins: currCoins + parseInt(args[1])
 		}
-		msg.channel.send(`${msg.author} has won ${args[1]} coins. You now have ${coins[msg.author.id].coins} coins <:thebest:480222232346624000>`);
+		msg.channel.send(`${msg.author} has won ${args[1]} coins. You now have ${coins[msg.author.id].coins} coins <:roodnstare:514537491404161028>`);
 	}
 	else{
 		console.log("loss");

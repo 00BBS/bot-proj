@@ -97,9 +97,9 @@ bot.on("message", async msg => {
 		.setAuthor(msg.author.username)
 		.setColor("#35ffda")
 		.setThumbnail(icon)
-		.addField("⚔", `You are now level ${xp[msg.author.id].level} ! You need ${(xp[msg.author.id].level * 250) - xp[msg.author.id].xp} more experience to level.`);
+		.addField("⚔", `You are now level ${xp[msg.author.id].level}! You need ${(xp[msg.author.id].level * 250) - xp[msg.author.id].xp} more experience to level.`);
 
-		msg.channel.send(levelUp);
+		msg.channel.send(levelUp).then(message => {message.delete(100000)});
 
 	}
 
@@ -130,7 +130,7 @@ bot.on("message", async msg => {
 
 	/**** Bonus Random Features ****/
 	if(msg.content.includes("le") === true){
-		return msg.channel.send("le " + msg.member + " has arrived")
+		return msg.channel.send("le " + msg.member + " has arrived").then(message => {message.delete(5000)})
 	}
 	/**** Bonus Random Features ****/
 
