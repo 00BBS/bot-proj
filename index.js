@@ -2,6 +2,7 @@ const config = require("./botconfig.json");
 const disc = require("discord.js");
 const fs = require("fs");
 let coins = require("./coins.json");
+let xp = require("./xp.json");
 
 const bot = new disc.Client({disableEveryone: true});
 
@@ -38,6 +39,8 @@ bot.on("message", async msg => {
 	}
 
 
+	/** Coin Functionality **/
+	// if the author has no coins, set to 0
 	if(!coins[msg.author.id]){
 		coins[msg.author.id] = {
 			coins: 0
@@ -60,14 +63,56 @@ bot.on("message", async msg => {
 			}
 		});
 
-		let embed = new disc.RichEmbed()
+		let cashEmbed = new disc.RichEmbed()
 		.setAuthor(msg.author.username)
 		.setColor("#35ffda")
 		.addField("💸", `${coinAmount * 50} coins added !`);
 
-		msg.channel.send(embed).then(message => {message.delete(10000)});
+		msg.channel.send(cashEmbed).then(message => {message.delete(10000)});
 
 	}
+
+
+	/** Xp Functionality **/
+	let xpAmount = Math.floor(Math.random() * 7) + 8;
+	if(!xp[msg.author.id]){
+		xp[msg.author.id] = {
+			xp: 0,
+			level: 1
+		}
+	}
+
+	let currXp = xp[msg.author.id].xp;
+	let currLvl = xp[msg.author.id].level;
+	let nextLevel = currLvl * 250;
+
+	xp[msg.author.id].xp = currXp + xpAmount;
+	// if user has reached levelling amount, increase level.
+	if(nextLevel <= xp[msg.author.id].xp){
+		xp[msg.author.id].level = currLvl + 1;
+		//reset xp to zero when reaching level cap and add additional left over xp.
+		xp[msg.author.id].xp = currLvl % 250;
+		let icon = msg.author.displayAvatarURL;
+		let levelUp = new disc.RichEmbed()
+		.setAuthor(msg.author.username)
+		.setColor("#35ffda")
+		.setThumbnail(icon)
+		.addField("⚔", `You are now level ${xp[msg.author.id].level} ! You need ${(xp[msg.author.id].level * 250) - xp[msg.author.id].xp} more experience to level.`);
+
+		msg.channel.send(levelUp);
+
+	}
+
+	fs.writeFile("xp.json", JSON.stringify(xp), (err) => {
+		if(err){
+			console.log(err);
+		}
+	});
+
+
+	console.log(`xpAmount gained: ${xpAmount}`);
+	console.log(`Level is ${xp[msg.author.id].level}`);
+
 
 	let prefix = config.prefix;
 	// split message by spaces
