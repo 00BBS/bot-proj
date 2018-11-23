@@ -12,6 +12,7 @@ Functionalities:
 - Payment system
 - Coinflip
 - Dice
+- Level system
 - Miscellaneous
 
 Invitation Link:
