@@ -91,7 +91,7 @@ bot.on("message", async msg => {
 	if(nextLevel <= xp[msg.author.id].xp){
 		xp[msg.author.id].level = currLvl + 1;
 		//reset xp to zero when reaching level cap and add additional left over xp.
-		xp[msg.author.id].xp = currXp % 250;
+		xp[msg.author.id].xp = (currXp + xpAmount) % 250;
 		let icon = msg.author.displayAvatarURL;
 		let levelUp = new disc.RichEmbed()
 		.setAuthor(msg.author.username)
